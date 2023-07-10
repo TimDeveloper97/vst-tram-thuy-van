@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BsonDataExample", "BsonDataExample\BsonDataExample.csproj", "{378C0EB9-C504-4A93-AA70-F9A223B4E069}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{378C0EB9-C504-4A93-AA70-F9A223B4E069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{378C0EB9-C504-4A93-AA70-F9A223B4E069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{378C0EB9-C504-4A93-AA70-F9A223B4E069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{378C0EB9-C504-4A93-AA70-F9A223B4E069}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB8AAFC3-2564-447C-9571-EF09E2BE539A}
+	EndGlobalSection
+EndGlobal
