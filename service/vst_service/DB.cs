@@ -13,7 +13,7 @@ namespace vst_service
         static public MainDatabase Main { get; private set; }
         static public void Register(string path)
         {
-            Main = new MainDatabase("MainDB");
+            Main = new MainDatabase(DateTime.Now.ToString("ddMMyyyy"));
             Main.Connect(path);
         }
 
