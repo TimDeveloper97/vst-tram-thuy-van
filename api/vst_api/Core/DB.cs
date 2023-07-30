@@ -1,15 +1,9 @@
 ﻿using BsonData;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace vst_service
+namespace vst_api.Core
 {
     public partial class DB
     {
-
         static public MainDatabase Main { get; private set; }
         static public void Register(string path)
         {

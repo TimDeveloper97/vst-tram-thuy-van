@@ -1,4 +1,5 @@
-﻿using System;
+﻿using share;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -110,7 +111,7 @@ namespace vst_service
                 }
 
                 // remove file
-                System.IO.File.Delete(file.FullName);
+                //System.IO.File.Delete(file.FullName);
             }
         }
     }

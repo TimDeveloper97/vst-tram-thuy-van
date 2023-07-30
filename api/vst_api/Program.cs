@@ -1,3 +1,6 @@
+using vst_api.Contracts;
+using vst_api.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +10,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+// DI
+builder.Services.AddScoped(typeof(IAuthRepository), typeof(AuthRepository));
+
+
+
+/// <summary>
+/// ////////////////////////////////////////////////////////////////////////////////////////////////
+/// </summary>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
