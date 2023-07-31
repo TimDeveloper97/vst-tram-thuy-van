@@ -16,6 +16,7 @@ namespace vst_api.Contracts
     public interface IGenericStaticRepository<T> : IGenericDynamicRepository<T>
         where T : Document, new()
     {
-
-    }    
+        T? Get(string key, string value);
+        bool Exist(string key, string value);
+    }
 }

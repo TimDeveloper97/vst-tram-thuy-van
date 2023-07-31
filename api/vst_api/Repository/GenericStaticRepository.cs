@@ -36,12 +36,35 @@ namespace vst_api.Repository
             return false;
         }
 
+        public bool Exist(string key, string value)
+        {
+            var item = Get(key, value);
+            if (item is not null)
+                return true;
+
+            return false;
+        }
+
         public T? Get(string? key)
         {
             if (key is not null)
             {
                 var exist = _dB.GetCollection(_name).Find(key);
                 return exist.ChangeType<T>();
+            }
+
+            return null;
+        }
+
+        public T? Get(string key, string value)
+        {
+            if (key is not null 
+                && value is not null)
+            {
+                var exist = _dB.GetCollection(_name).Select(x => x.GetValue<string>(key) == value).ToList();
+                if(exist is not null
+                    && exist.Count() != 0)
+                    return exist[0].ChangeType<T>();
             }
 
             return null;
