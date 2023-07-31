@@ -1,4 +1,5 @@
-﻿using share;
+﻿using Models.User;
+using share;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,15 @@ namespace vst_service
                 // finish loop
                 Console.WriteLine("Finish loop " + loop++);
             }, null, 0, 1000 * 10);
+
+            DB.Context.Insert("User", doc =>
+            {
+                doc.Push("FirstName", "Dinh");
+                doc.Push("LastName", "Duy Anh");
+                doc.Push("Username", "admin");
+                doc.Push("Password", "1");
+                doc.Push("Role", "0");
+            });
 
             Console.WriteLine("Timer is running ...");
             Console.ReadKey();

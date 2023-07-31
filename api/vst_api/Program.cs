@@ -1,5 +1,10 @@
+using Serilog;
+using share;
+using System.Reflection;
 using vst_api.Contracts;
 using vst_api.Repository;
+
+InitDB();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +15,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// logger
+builder.Host.UseSerilog((context, logger) => logger.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
 
 // DI
 builder.Services.AddScoped(typeof(IAuthRepository), typeof(AuthRepository));
+
+
 
 
 
@@ -35,3 +44,13 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void InitDB()
+{
+    string currentPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+    string basePath = Directory.GetParent(currentPath).Parent.Parent.Parent.FullName;
+    string appDataPath = basePath + "\\app_data";
+
+    // init db
+    DB.Register(appDataPath);
+}

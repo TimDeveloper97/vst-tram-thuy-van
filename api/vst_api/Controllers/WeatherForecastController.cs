@@ -28,6 +28,7 @@ namespace vst_api.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+            _logger.LogInformation("ádasdsd");
         }
     }
 }

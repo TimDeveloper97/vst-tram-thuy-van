@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 
 namespace Models.User
 {
-    public class CreateUserDto : LoginDto
+    public class User : LoginDto
     {
-        [Required]
         public string FirstName { get => GetString(nameof(FirstName)); set => Push(nameof(FirstName), value); }
-
-        [Required]
+        public DateTime? Timeout { get => GetDateTime(nameof(Timeout)); set => Push(nameof(Timeout), value); }
         public string LastName { get => GetString(nameof(LastName)); set => Push(nameof(LastName), value); }
+        public EUserRole Role { get => (EUserRole) Enum.Parse(typeof(EUserRole), GetString(nameof(Role))); set => Push(nameof(Role), value); }
+    }
+
+    public enum EUserRole
+    {
+        Admin = 0,
+        User,
     }
 }

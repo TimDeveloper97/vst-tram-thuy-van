@@ -15,6 +15,8 @@ namespace share
             DB.Main.Add(this);
         }
 
+        public Collection Current { get => GetCollection(DateTime.Now); }
+
         /// <summary>
         /// Insert
         /// </summary>

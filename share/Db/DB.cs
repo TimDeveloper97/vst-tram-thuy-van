@@ -42,5 +42,18 @@ namespace share
                 return s10;
             }
         }
+
+        static DynamicDB context;
+        static public DynamicDB Context
+        {
+            get
+            {
+                if (context == null)
+                {
+                    context = new DynamicDB("Data");
+                }
+                return context;
+            }
+        }
     }
 }

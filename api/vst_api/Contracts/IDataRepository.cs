@@ -1,8 +1,9 @@
 ﻿using Model;
+using Models.User;
 
 namespace vst_api.Contracts
 {
-    public interface IDataRepository : IGenericRepository<ModelS10>
+    public interface IDataRepository : IGenericDynamicRepository<User>
     {
 
     }
