@@ -7,7 +7,7 @@ namespace vst_api.Repository
     public class GenericStaticRepository<T> : IGenericStaticRepository<T> where T : Document, new()
     {
         readonly DynamicDB _dB;
-        string _name = typeof(T).ToString();
+        string _name = typeof(T).Name.ToString();
 
 
         public GenericStaticRepository()
@@ -61,7 +61,8 @@ namespace vst_api.Repository
             if (key is not null 
                 && value is not null)
             {
-                var exist = _dB.GetCollection(_name).Select(x => x.GetValue<string>(key) == value).ToList();
+                var exist = _dB.GetCollection(_name)
+                                .Select(x => x.GetValue<string>(key) == value).ToList();
                 if(exist is not null
                     && exist.Count() != 0)
                     return exist[0].ChangeType<T>();
@@ -72,8 +73,8 @@ namespace vst_api.Repository
 
         public List<T> GetAll()
         {
-            var all = _dB.GetCollection(_name).Select().Cast<T>().ToList();
-            return all;
+            var all = _dB.GetCollection(_name).Select().ToList();
+            return null;
         }
 
         public PagedResult<T> GetAll(QueryParameters queryParameters)

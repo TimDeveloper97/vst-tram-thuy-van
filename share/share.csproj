@@ -55,7 +55,7 @@
     <Compile Include="Db\SequenceDB.cs" />
     <Compile Include="Models\ModelS10.cs" />
     <Compile Include="Models\User\AuthResponseDto.cs" />
-    <Compile Include="Models\User\LoginDto.cs" />
+    <Compile Include="Models\User\Login.cs" />
     <Compile Include="Models\User\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\ModelSQE.cs" />

@@ -15,7 +15,7 @@ namespace share
         {
             Main = new MainDatabase("MainDB");
             Main.Connect(path);
-            Main.StartStorageThread();
+            //Main.StartStorageThread();
         }
 
         static SequenceDB seq;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Models.User;
 using System.Net;
+using vst_api.Configurations;
 using vst_api.Contracts;
 using vst_api.Models;
 
@@ -21,14 +22,17 @@ namespace vst_api.Controllers
             this._logger = logger;
         }
 
-        [HttpPost]
-        public IActionResult Login(LoginDto loginDto)
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(Login login)
         {
+            var username = login["Username"].ToString();
+            var password = login["Password"].ToString();
+
             var users = Users.Instance;
-            var md5Pass = loginDto.Password.ToMD5();
+            var md5Pass = password.ToMD5();
 
             // find and checked
-            var exist = users.FirstOrDefault(x => x.Value.Username == loginDto.Username);
+            var exist = users.FirstOrDefault(x => x.Value.Username == username);
             if (exist.Key is not null)
             {
                 if (exist.Value.Password != md5Pass)
@@ -41,7 +45,7 @@ namespace vst_api.Controllers
                 else
                 {
                     // add new user and timeout
-                    var token = loginDto.Username.JoinMD5(DateTime.Now);
+                    var token = username.JoinMD5(DateTime.Now);
                     var newUser = exist.Value;
                     newUser.Timeout = DateTime.Now.AddMinutes(double.Parse(_configuration["Config:Timeout"] ?? "15"));
 
@@ -54,7 +58,8 @@ namespace vst_api.Controllers
             // user not add to current instantce
             else
             {
-                var existUser = _genericStatic.Get("Username", loginDto.Username);
+                var total = _genericStatic.GetAll();
+                var existUser = _genericStatic.Get("Username", username);
 
                 if (existUser is not null)
                 {
@@ -62,7 +67,7 @@ namespace vst_api.Controllers
                         return NotFound(new Response { Code = -1, Message = "sai mật khẩu" });
 
                     // add new user and timeout
-                    var token = loginDto.Username.JoinMD5(DateTime.Now);
+                    var token = username.JoinMD5(DateTime.Now);
                     var newUser = existUser;
                     newUser.Timeout = DateTime.Now.AddMinutes(double.Parse(_configuration["Config:Timeout"] ?? "15"));
 
@@ -78,7 +83,7 @@ namespace vst_api.Controllers
             return BadRequest(new Response { Code = -1, Message = "server error" });
         }
 
-        [HttpPost]
+        [HttpPost("Register")]
         public IActionResult Register(User user)
         {
             if(string.IsNullOrEmpty(user.Username)

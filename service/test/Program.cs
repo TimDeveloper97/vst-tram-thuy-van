@@ -21,17 +21,27 @@ namespace test
             // init db
             DB.Register(appDataPath);
 
+            //DB.Context.Insert<A>("User", (doc) =>
+            //{
+            //    doc.Username = "user";
+            //    doc.Password = "1";
+            //    doc.LastName = "user";
+            //    doc.FirstName = "account";
+            //    doc.Role = EUserRole.User;
+            //});
+
             DB.Context.Insert<A>("User", (doc) =>
             {
-                doc.Username = "user";
+                doc.Username = "user2";
                 doc.Password = "1";
-                doc.LastName = "user";
+                doc.LastName = "user2";
                 doc.FirstName = "account";
                 doc.Role = EUserRole.User;
             });
+
             // execute
-            var item = DB.Context.GetCollection<User>()
-                .Select(x => x.GetValue<string>("Username") == "user").ToList();
+            var item = DB.Context.GetCollection("User")
+                .Select(x => x.GetValue<string>("Username") == "admin").ToList();
             var y = Document.FromObject<A>(item[0]);
             Console.WriteLine(y.Username);
         }
